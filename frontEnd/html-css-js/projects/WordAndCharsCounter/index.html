@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    main {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    h1 {
+      padding: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      width: 500px;
+      height: 100px;
+    }
+
+    p {
+      margin: 10px 0px;
+      text-align: center;
+      filter: opacity(85%);
+    }
+
+    button {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      outline: 2px solid #000;
+      font-size: 1rem;
+    }
+  </style>
+  <body>
+    <main>
+      <h1>Contador de caracteres e palavras</h1>
+      <form action="">
+        <label for="text">Digite seu texto:</label>
+        <textarea name="text" id="text"></textarea>
+      </form>
+      <div>
+        <p>0 caractere(s)</p>
+        <button>Contar Palavras</button>
+      </div>
+    </main>
+    <script>
+      let btn = document.querySelector("button");
+      let textarea = document.querySelector("textarea");
+      let option = " caractere(s)"; // Contando caracteres
+      let chars = 0;
+      let word = 0;
+
+      textarea.addEventListener("input", () => {
+        chars = textarea.value.length;
+        word =
+          textarea.value.trim().split(/\s+/).length === 1 &&
+          textarea.value.trim().split(/\s+/)[0] === ""
+            ? 0
+            : textarea.value.trim().split(/\s+/).length;
+        if (option === " caractere(s)") {
+          document.querySelector("p").textContent = chars + option;
+        } else {
+          document.querySelector("p").textContent = word + option;
+        }
+      });
+
+      btn.addEventListener("click", () => {
+        if (btn.textContent === "Contar Palavras") {
+          btn.textContent = "Contar Caracteres";
+          option = " palavra(s)";
+          document.querySelector("p").textContent = word + option;
+        } else {
+          btn.textContent = "Contar Palavras";
+          option = " caractere(s)";
+          document.querySelector("p").textContent = chars + option;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flip The Coin</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💲</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto";
+      }
+      main {
+        background-color: #404a65;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem 0;
+        border: 0.5rem solid #2e3548;
+        justify-content: space-between;
+        gap: 3rem;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      h1 {
+        font-family: "Press Start 2P", system-ui;
+        color: #ecedf1;
+        font-weight: 600;
+        text-shadow: 2px 2px 0px #35383f;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: #35383f;
+        margin-bottom: 12px;
+      }
+
+      .sub-title{
+        font-size: 1.2rem;
+        font-weight: bolder;
+        color: #ecedf1;
+        padding: 12px;
+        
+      }
+      .coin-status{
+        color: #ecedf1;
+        font-weight: bolder;
+        font-size: 1.2rem;
+        margin: 2rem 0;
+      }
+
+      .item{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 80vh;
+        gap: 1rem;
+      }
+
+      button{
+        font-family: "Roboto";
+        text-transform: uppercase;
+        color: #ecedf1;
+        font-size: 1rem;
+        padding: 12px 15px;
+        background-color: #1F6FB0;
+        font-weight: bolder;
+        border: none;
+        border-radius: 10px;
+      }
+
+      button:hover{
+        background-color: #1f6fb0be;
+
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Flip the coin</h1>
+      <p class="sub-title">Press the coin or the button to flip the coin</p>
+      <div class="item">
+        <img
+          src="flip-the-coin-master/resources/heads.svg"
+          alt="coin_Heads"
+          id="coin"
+        />
+        <img
+          src="flip-the-coin-master/resources/shadow.svg"
+          alt="shadow"
+        />
+        <p class="coin-status">Heads</p>
+        <button class="btn">Random</button>
+      </div>
+    </main>
+    <script>
+      function change(){
+        let sideCoin = Math.random() < 0.5 ? "Heads" : "Tails";
+        let coin = document.getElementById("coin")
+        coin.src = `flip-the-coin-master/resources/${sideCoin.toLocaleLowerCase()}.svg`
+        coin.alt = sideCoin
+        document.getElementsByTagName("button")[0].textContent = sideCoin
+        document.getElementsByClassName("coin-status")[0].textContent = sideCoin
+        console.log("aaaa")
+      }
+
+      document.getElementsByTagName("button")[0].addEventListener("click", change)
+      document.getElementById("coin").addEventListener("click", change) 
+    </script>
+  </body>
+</html>
