@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paleta de Cores</title>
+
+    <style>
+      :root {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 100%;
+        text-align: center;
+        padding-top: 2rem;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      button {
+        margin-top: 4rem;
+        border: none;
+        padding: 1rem 2rem;
+        background-color: #774cae;
+        font-size: 1rem;
+        color: #fff;
+        border-radius: 0.425rem;
+        font-weight: 700;
+        width: fit-content;
+      }
+
+      button:hover {
+        background-color: #764cae8a;
+      }
+
+      .cores {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .cor {
+        height: 100px;
+        width: 100px;
+      }
+
+      p{
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Paleta de Cores</h1>
+
+      <div class="cores"></div>
+
+      <button>Gerar nova paleta</button>
+    </main>
+
+    <script>
+      const hexDigits = [...Array(16)].map((_, i) =>
+        i.toString(16).toUpperCase()
+      );
+      
+      function randomColor() {
+        let str = "#";
+        let idx = () => Math.floor(Math.random() * hexDigits.length);
+
+        while (str.length < 7) {
+          str += hexDigits[idx()];
+        }
+
+        return str;
+      }
+
+
+      document.querySelector("button").addEventListener("click", function(){
+        let cards = [...Array(5)].map((el) => randomColor());
+        const cores = document.querySelector(".cores") ;
+        cores.innerHTML = "";
+        cards.forEach((cor) => {
+          let card = document.createElement("div");
+          let corDiv = document.createElement("div");
+          let p = document.createElement("p");
+          p.style.color = cor;
+          p.textContent = cor;
+          corDiv.classList.add("cor");
+          corDiv.style.backgroundColor = cor;
+          card.append(corDiv, p)
+          cores.append(card);
+        })
+
+
+
+      })
+    </script>
+  </body>
+</html>

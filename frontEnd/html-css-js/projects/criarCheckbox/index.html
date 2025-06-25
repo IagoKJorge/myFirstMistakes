@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox</title>
+  <style>
+
+    
+
+    input[type="checkbox"]{
+      display: none;
+    }
+
+
+
+    span{
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      border: 1px solid black;
+      margin-right: 5px;
+      padding: 3px;
+    }
+
+   input[type="checkbox"]:checked + label span::before{
+      display: block;
+      content: "";
+      width: 35%;
+      height: 70%;
+      transform: translate(80%) rotate(45deg);
+      border-right: 2px solid black;
+      border-bottom: 2px solid black;
+    }
+
+
+  </style>
+</head>
+<body>
+  <input type="checkbox" name="check" id="check">
+  <label for="check"> <span></span> HTML</label>
+</body>
+</html>

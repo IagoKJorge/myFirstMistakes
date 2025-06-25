@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+
+     
+
+
+      div{
+        display: none;
+      }
+
+      div.modal{
+        text-align: center;
+        display: block;
+        position: absolute;
+        top: 25%;
+        left: 25%;
+        transform: translate(25%,25%);
+        z-index: 1;
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 1rem;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <h1>Bem-Vindo ao nosso site!</h1>
+    <p>Continue navegando...</p>
+    <div>
+      <strong>Você tem certeza que deseja sair?</strong>
+      <p>Utilize o nosso cupom: 100FF, para ter 10% de desconto!</p>
+      <button>Cancelar</button>
+    </div>
+    <script>
+      const div = document.querySelector("div");
+      let count = 0;
+      
+      document.addEventListener("mouseout", (event) => {
+        if (event.clientY <= 0 && !count) {
+          document.querySelector("body").style.background = "#00000053";
+          div.classList.add("modal");
+        }
+      });
+
+      document.querySelector("button").addEventListener("click", () => {
+          document.querySelector("body").style.background = "";
+          div.classList.remove("modal");
+          count++;
+      })
+
+
+    </script>
+  </body>
+</html>

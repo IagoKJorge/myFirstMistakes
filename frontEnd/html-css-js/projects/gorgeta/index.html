@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Gorgeta</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body{
+      background-color: #F2F2F2;
+      padding-top: 3rem;
+    }
+
+    :root{
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    main{
+      width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0px 0px 4px 2px #0000006a;
+    }
+
+    h1{
+      text-align: center;
+      font-size: 2.5rem;
+    }
+
+    form{
+      display: grid;
+      gap: 0.4rem;
+      width: 100%;
+      font-size: 1.25rem;
+      padding: 1rem;
+    }
+
+    input,select{
+      padding: 0.6rem 1rem;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    option:hover{
+      background-color: #1D91FF;
+    }
+
+    option[value=""]{
+      height: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Calculadora de Gorgeta</h1>
+    <form action="#">
+      <label for="vlr">Valor da conta:</label>
+      <input type="number" min="0" name="vlr" id="vlr">
+      <label for="avaliacao">Valor da conta:</label>
+      <select name="avaliacao" id="avaliacao">
+        <option value="10">Exelente - 10%</option>
+        <option value="8">Ótimo - 8%</option>
+        <option value="5">Bom - 5%</option>
+        <option value="2">Ruim - 2%</option>
+      </select>
+      <label for="gorgeta">Valor da gorgeta:</label>
+      <input type="number" min="0" name="gorgeta" id="gorgeta" disabled>
+      <label for="total">Valor total:</label>
+      <input type="number" min="0" name="total" id="total" disabled>
+    </form>
+    <script>
+      const select = document.querySelector("select");
+      const vlr = document.querySelector("#vlr");  
+      function calc(){
+        document.querySelector("#gorgeta").value = Number(select.value/100 * vlr.value.trim()).toFixed(2);
+        document.querySelector("#total").value = Number((select.value/100 + 1) * vlr.value.trim()).toFixed(2)
+      }
+      
+      select.addEventListener("change", () => {
+        if(!vlr.value.trim()){
+          vlr.focus();
+          return
+        }
+
+         calc();
+
+      })
+
+
+      vlr.addEventListener("change", () => {
+        if(!select.value.trim()){
+          select.focus();
+          return
+        }
+
+         calc();
+
+      })
+    </script>
+  </main>
+</body>
+</html>

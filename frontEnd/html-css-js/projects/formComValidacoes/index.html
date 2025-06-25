@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulário com Validação</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      label {
+        display: block;
+      }
+
+      main {
+        display: grid;
+        place-content: center;
+        margin: 0 auto;
+        padding-top: 3rem;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      form,
+      input,
+      textarea,
+      button {
+        width: 700px;
+      }
+
+      label {
+        margin-top: 1.25rem;
+        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+      }
+
+      input,
+      textarea {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+        border: 2px solid #ccc;
+        outline: none;
+      }
+
+      textarea {
+        resize: vertical;
+      }
+
+      button {
+        margin-top: 1.25rem;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 0.8rem 1.5rem;
+        font-size: 1.25rem;
+        background-color: #2957b3;
+        color: #fff;
+        border-radius: 0.5rem;
+      }
+
+      button:hover {
+        background-color: #5087ef;
+      }
+
+      span {
+        color: #e11313;
+        font-size: 1.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Formulário de Contato</h1>
+      <form action="#">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" autocomplete="off" />
+        <span class="nome"></span>
+        <label for="email">E-mail</label>
+        <input type="email" id="email" autocomplete="off" />
+        <span class="email"></span>
+        <label for="assunto">Assunto</label>
+        <input type="text" id="assunto" autocomplete="off" />
+        <span class="assunto"></span>
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" autocomplete="off"></textarea>
+        <span class="mensagem"></span>
+        <button type="button">Enviar</button>
+      </form>
+    </main>
+    <script>
+      const nome = document.querySelector("#nome");
+      const email = document.querySelector("#email");
+      const assunto = document.querySelector("#assunto");
+      const mensagem = document.querySelector("#mensagem");
+
+      document.querySelector("button").addEventListener("click", (ev) => {
+        ev.preventDefault();
+        
+        if (!nome.value.trim() || !email.value.trim() || !assunto.value.trim() || !mensagem.value.trim()) {
+          if (!nome.value.trim()) {
+            document.querySelector(".nome").textContent =
+              "Nome não pode ficar em branco";
+          } else {
+            document.querySelector(".nome").textContent = "";
+          }
+
+          if (!assunto.value.trim()) {
+            document.querySelector(".assunto").textContent =
+              "Assunto não pode ficar em branco";
+          } else {
+            document.querySelector(".assunto").textContent = "";
+          }
+
+          if (!mensagem.value.trim()) {
+            document.querySelector(".mensagem").textContent =
+              "Mensagem não pode ficar em branco";
+          } else {
+            document.querySelector(".mensagem").textContent = "";
+          }
+
+          if (!email.value.trim()) {
+            document.querySelector(".email").textContent =
+              "E-mail não pode ficar em branco"; 
+          } else {
+            document.querySelector(".email").textContent = "";
+          }
+          return;
+        }
+
+        if (!/^[\w.-]+@[\w.-]+\.\w+$/.test(email.value.trim())) {
+          document.querySelector(".email").textContent = "E-mail inválido!";
+          return
+        }else{
+          document.querySelector(".email").textContent = "";
+        }
+
+
+        alert("Informações salvas com sucesso!")
+         location.reload(); // Agora vai recarregar
+      });
+    </script>
+  </body>
+</html>
