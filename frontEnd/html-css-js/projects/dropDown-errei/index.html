@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dropDown</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #29c81a;
+      }
+
+      header {
+        background-color: #333333;
+        color: #fff;
+        height: 50px;
+      }
+
+      ul {
+        display: flex;
+        list-style: none;
+        gap: 1rem;
+      }
+
+      li > ul {
+        display: none;
+      }
+
+      li {
+        padding: 1rem;
+        width: fit-content;
+      }
+
+      li:hover {
+        background-color: #222222;
+      }
+
+      li:hover > ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      li:hover > ul > li {
+        padding: 0;
+        margin: 0;
+      }
+
+      li.hasSub:hover {
+        display: flex;
+        gap: 0.5rem;
+        height: min-content;
+        overflow-y: hidden;
+      }
+
+      aside {
+        position: absolute;
+        top: 100%;
+        left: 91%;
+        background-color: #8734da;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li>Home</li>
+          <li>Sobre</li>
+          <li>
+            Produtos
+            <ul>
+              <li>Produto 1</li>
+              <li class="hasSub">
+                <span>Produto 2</span>
+                <ul class="subprodutos">
+                  <li>Subproduto 1</li>
+                  <li>Subproduto 2</li>
+                </ul>
+              </li>
+              <li>Produto 3</li>
+            </ul>
+          </li>
+          <li>Contato</li>
+        </ul>
+      </nav>
+    </header>
+    <main>Conteúdo...</main>
+    <aside>Voltar ao topo!</aside>
+    <script>
+      document.querySelector("aside").addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth", // ou 'auto' para instantâneo
+        });
+      });
+    </script>
+  </body>
+</html>

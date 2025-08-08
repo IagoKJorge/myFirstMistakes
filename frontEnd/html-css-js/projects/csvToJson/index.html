@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor</title>
+  <style>
+    body{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .text{
+      width: 600px;
+      height: 200px;
+      border: 2px solid #ccc;
+      border-radius: 0.7rem;
+      outline: none;
+      resize: none;
+    }
+
+    button + button{
+      margin-left: 1rem;
+    }
+   
+    .btn{
+      padding: 0.8rem 1.5rem;
+      font-size: 1.25rem;
+      color: #fff;
+      background-color: rgb(122, 78, 219);
+      border: none;
+      outline: none;
+      border-radius: 0.6rem;
+      cursor: pointer;
+    }
+
+    .btn:hover{
+      opacity: 0.6;
+    }
+
+    pre.text{
+      height: auto;
+      text-align: left;
+      padding: 1rem;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Conversor de JSON <> CVC</h1>
+  <h2>Insira o JSON ou CSV:</h2>
+  <textarea class="text">
+
+  </textarea>
+  <div class="btns">
+    <button class="btn" id="json">JSON para CSV</button>
+    <button class="btn" id="csv">CSV para JSON</button>
+  </div>
+  <script>
+    const btnCSV = document.querySelector("#csv");
+    const btnJSON = document.querySelector("#json");
+    const text = document.querySelector(".text");
+    btnCSV.addEventListener("click", () => {
+      if(!text.value.trim()) return;
+      let arr = text.value.trim().split("\n");
+      arr = arr.map((el) => el.split(","));
+      console.log(arr)
+      let textResp = [];
+      let geraOBJ = function(...values){
+        return {...arguments};
+      }
+
+
+      for(let i = 1; i < arr.length; i++){
+        let obj = {}
+        for(let prop = 0; prop < arr[i].length; prop++){
+          obj[arr[0][prop].trim()] = arr[i][prop].trim();
+        }
+        textResp.push(obj);
+      }
+
+      
+
+      textResp = JSON.stringify(textResp);
+      let pre = document.createElement("pre");
+      pre.classList.add("text");
+      pre.textContent = textResp;
+      let texto = pre.textContent;
+      console.log(texto)
+      const resultado = texto.replace(/([{\[\],}])(?=\S)/g, '$1\n');
+      pre.textContent = resultado;
+      document.querySelector("body").append(pre);
+
+    })
+
+    btnJSON.addEventListener("click", function(){
+      if(!text.value.trim()) return;
+      let csv = "";
+      let csvText = text.value.trim().replace(/\n/g,""); 
+      csvText = JSON.parse(JSON.stringify(csvText)).replace(/[\[\]{"]/g, "").split("},");
+      csv += csvText[0].replace(/:.*?,/g,"").replace(/:.*/g,"").trim().split(" ").join(",") + "\n"
+      
+      csvText = csvText.map(el => el.replace(/,.*?:/g,"").replace(/.*?:/g,"").trim().split(" ").join(","))
+      
+      for(let i = 1; i < csvText.length; i++){
+        csv += csvText[1] + "\n";
+      }
+      console.log(csv)
+       // Cria o arquivo
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+
+    // Cria link invisível temporário
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "dados.csv";
+    link.style.display = "none";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url); // limpa memória
+
+    })
+  </script>
+</body>
+</html>

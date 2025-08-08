@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo Da Adivinhação</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        text-align: center;
+        padding: 3em;
+        background-color: #f5f5f5;
+      }
+
+      h1 {
+        margin-bottom: 2em;
+      }
+
+      main {
+        padding: 3em;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+        border-radius: 1em;
+        margin: 0 auto;
+        background-color: #ffffff;
+        align-items: center;
+        width: clamp(40em, 60em, 70em);
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.45);
+      }
+
+      select,
+      input,
+      button {
+        padding: 1em 1.5em;
+        font-size: 1em;
+        border: none;
+        outline: 2px solid #111;
+        border-radius: 0.4em;
+      }
+
+      select {
+        text-align: center;
+      }
+
+      form{
+        width: 100%;
+      }
+
+      input{
+        width: 40%;
+      }
+
+      button {
+        color: #fff;
+        background-color: #111;
+        margin-left: 0.5em;
+        padding: 1em 2em;
+      }
+
+      button:hover {
+        background-color: #111111c4;
+      }
+
+      .dica {
+        color: rgba(5, 5, 248, 0.936);
+        font-size: 1.5em;
+      }
+
+      .tentativas, .intervalo {
+        font-size: 1.5em;
+      }
+
+      label {
+        font-size: 1.25em;
+        font-weight: 600;
+      }
+
+      .none {
+        display: none;
+      }
+
+      .reset{
+        display: none;
+      }
+     
+    </style>
+  </head>
+
+  <body>
+    <h1>Jogo da Adivinhação</h1>
+    <main class="jogo">
+      <p class="intervalo none">Eu estou pensando em um número entre 1 a 100. Tente adivinhar qual é!</p>
+      <label for="nivel" class="nivel">Escolha a difuculdade:</label>
+      <select name="nivel" id="nivel" class="nivel">
+        <option value="0" disabled selected>Selecione</option>
+        <option value="10">Fácil</option>
+        <option value="7">Médio</option>
+        <option value="5">Difícil</option>
+      </select>
+      <form action="#" class="none">
+        <input type="number" name="num" id="num" autocomplete="none" max="100" min="1"/><button
+          type="submit" id="jogar"
+        >
+          Enviar
+        </button>
+      </form>
+      <p class="dica none"></p>
+      <p class="tentativas none">
+        Tentativas restantes: <span class="tentativasFaltantes">0</span>
+      </p>
+      <button type="button" class="reset">Jogar novamente</button>
+    </main>
+    <script>
+      let select = document.querySelector("select");
+      let tentativas = document.querySelector(".tentativasFaltantes");
+      let initNones = document.querySelectorAll(".none");
+      let btnPlay = document.querySelector("#jogar");
+      select.addEventListener("change", initGame);
+      let cont = 0;
+      let randomNum = () => Math.floor( (Math.random()*100)+ 1);
+      let num = 0; 
+      let num1 = document.querySelector("#num")
+      function initGame(){
+        initNones.forEach(element => {
+          element.classList.remove("none");
+        })
+        tentativas.textContent = select.value;
+        cont = Number(select.value);
+        num = randomNum();
+        btnPlay.addEventListener("click", check);
+        document.querySelectorAll(".nivel").forEach(element => {
+          element.classList.add("none");
+        })
+      }
+
+      function check(ev){
+        ev.preventDefault();
+        
+        if(num1.value.trim() === "") return;
+        if(!cont) return;
+        if(num1.value < num){
+          --cont;
+          tentativas.textContent = cont;
+          document.querySelector(".dica").textContent = `O número é maior que ${num1.value}`
+          if(!cont){
+            document.querySelector(".dica").style.color = "red";
+             document.querySelector(".dica").textContent = `Você perdeu!`
+          }
+        }
+
+        if(num1.value > num){
+          --cont;
+          tentativas.textContent = cont;
+          document.querySelector(".dica").textContent = `O número é menor que ${num1.value}`
+          if(!cont){
+            document.querySelector(".dica").style.color = "red";
+             document.querySelector(".dica").textContent = `Você perdeu!`
+          }
+        }
+        console.log(num)
+        
+        if(num1.value == num){
+          cont--;
+          tentativas.textContent = cont;
+          document.querySelector(".dica").style.color = "green";
+          document.querySelector(".dica").textContent = `Você venceu em ${select.value - cont} tentativas!`
+          document.querySelector(".reset").style.display = "inline-block";
+          document.querySelector(".reset").addEventListener("click", (ev) => {
+            location.reload();
+          })
+          cont = 0;
+        }
+
+
+      }
+
+    </script>
+  </body>
+</html>

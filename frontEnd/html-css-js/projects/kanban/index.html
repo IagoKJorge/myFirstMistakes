@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>"
+    />
+    <title>Kanban</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+      .mainContainer{
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        gap: 5rem;
+        flex-wrap: wrap;
+      }
+
+      h1{
+        font-size: 3.5rem;
+      }
+
+      .formWrapper{
+        align-self: flex-start;
+       
+      }
+
+      .formWrapper label{
+         display: block;
+         padding: 0.75rem 0;
+         font-size: 1.25rem;
+         
+      }
+
+      .formWrapper form input,button{
+        font-size: 1rem;
+        padding: 0.25rem 0.5rem;
+        outline: 1px solid #dbdbdb;
+        border: none;
+        border-radius: 5px;
+      }
+
+      button{
+        margin-left: 1rem;
+        padding: 0.25rem 0.75rem;
+        outline: none;
+        background-color: #2395F1;
+        color: #f3f2f2;
+        border-radius: 3px;
+        transition: background-color 0.3s linear;
+      }
+
+      button:hover{
+         background-color: #2394f1bc;
+      }
+
+      .kanban{
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .kanban-item {
+        flex: 1 1 250px;
+        width: calc(33vw - 1rem);
+        background-color: #EEEEEE;
+        padding: 1rem 1rem;
+        text-align: center;
+        border-radius: 2rem;
+      }
+
+      .title{
+        font-size: 2rem;
+      }
+
+      .list{
+        width: 100%;
+        list-style: none;
+        margin-top: 3rem;
+        border: 2px dashed #ccc;
+        border-radius: 5px;
+        padding: 1rem;
+        min-height: 100px;
+      }
+
+      .list li{
+        text-align: left;
+        background-color: #FFFFFF;
+        color: #2d3031;
+        font-weight: bolder;
+        margin-bottom: 0.3rem;
+        padding: 0.5rem;
+        border-radius: 5px;
+        cursor: move;
+        transition: 0.4s;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .list li.dragging{
+        opacity: 0.3;
+      }
+
+       .list li:hover{
+        opacity: 0.5;
+      }
+
+      
+    </style>
+  <script src="index.js" defer></script>
+  </head>
+  <body>
+    <main class="mainContainer">
+      <h1>Kanban</h1>
+      <div class="formWrapper">
+        <form action="">
+          <label for="tarefa" class="titleForm">Crie uma nova tarefa:</label>
+          <input type="text" name="tarefa" id="tarefa" placeholder="Digite o título..." autocomplete="off";>
+          <button type="submit" id="create">Criar</button>
+        </form>
+      </div>
+      <div class="kanban">
+        <section id="toDo" class="kanban-item">
+          <h2 class="title">Para Fazer</h2>
+          <ul class="list todo">
+          </ul>
+        </section>
+        <section id="doing" class="kanban-item">
+          <h2 class="title">Fazendo</h2>
+          <ul class="list doing">
+          </ul>
+        </section>
+        <section id="done" class="kanban-item">
+          <h2 class="title">Feitas</h2>
+          <ul class="list done">
+          </ul>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

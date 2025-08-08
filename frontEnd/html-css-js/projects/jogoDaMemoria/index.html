@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-bt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo da Memória</title>
+  </head>
+  <style>
+
+    h1{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: lighter;
+      font-size: 3.5em;
+    }
+
+    .main{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cards_container,.cards_row{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 3em;
+    }
+
+    .cards_card{
+      flex: 0 1 12.5em;
+      border: 2px solid #000;
+      gap: 1rem;
+      height: 12.5em;
+    }
+
+    .cards_img{
+      display: block;
+      height: 100%;
+      width: 100%;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .result{
+      margin-top: 2em;
+      font-size: 2em;
+      text-align: center;
+    }
+
+    .success{
+      color: rgb(48, 206, 48);
+      font-weight: 600;
+      border: 2px solid;
+      padding: 1em;
+      visibility: hidden;
+    }
+  
+
+  </style>
+  <script src="script.js" defer></script>
+  <body>
+    <main class="main">
+      <h1>Jogo da Memória</h1>
+      <section class="cards_container">
+        <div class="cards_row">
+          <article class="cards_card">
+            <img
+             data-idx="0" 
+            src="question.png"
+            alt=""
+            class="cards_img"
+            />
+          </article>
+          <article class="cards_card">
+            <img
+            data-idx="1" 
+            src="question.png"
+            alt=""
+            class="cards_img"
+            />
+          </article>
+          <article class="cards_card">
+            <img
+            data-idx="2" 
+            src="question.png"
+            alt=""
+            class="cards_img"
+            />
+          </article>
+          <article class="cards_card">
+            <img
+            data-idx="3" 
+            src="question.png"
+            alt=""
+            class="cards_img"
+            />
+          </article>
+        </div>
+        <div class="cards_row">
+          <article class="cards_card">
+            <img
+            data-idx="4" 
+            src="question.png"
+            alt=""
+            class="cards_img"
+            />
+          </article>
+          <article class="cards_card">
+            <img
+            data-idx="5" 
+            src="question.png"
+            alt=""
+            class="cards_img"
+            />
+          </article>
+          <article class="cards_card">
+            <img
+            data-idx="6" 
+            src="question.png"
+            alt=""
+            class="cards_img"
+            />
+          </article>
+          <article class="cards_card">
+            <img
+            data-idx="7" 
+            src="question.png"
+            alt=""
+            class="cards_img"
+            />
+          </article>
+        </div>
+      </section>
+      <div class="result">
+        <p class="attempt">Tentativas: <span id="total">0</span></p>
+        <p class="success">Você acertou em tentativas!</p>
+      </div>
+    </main>
+  </body>
+</html>

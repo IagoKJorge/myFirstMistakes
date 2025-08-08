@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora Grid</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(45deg, #191a3b, #4145af, #5458db);
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .calculadoraGrid {
+        display: grid;
+        width: 20vw; /* largura responsiva */
+        aspect-ratio: 2 / 3; /* altura maior que largura */
+        grid-template-areas:
+          "result result result result"
+          "ac     mod    mult   div"
+          "n7     n8     n9     equal"
+          "n4     n5     n6     less"
+          "n1     n2     n3     more"
+          "n0     n0     dot    more";
+        padding: 1em;
+        gap: 1em;
+        background-color: #527499;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.628);
+        border-radius: 6px;
+      }
+
+      button{
+        background-color: #262424;
+        color: #E7E9F6;
+        font-weight: 600;
+        font-size: 1.25em;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.628);
+      }
+
+      .result {
+        grid-area: result;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 0.5em;
+        font-size: 2em;
+         background-color: #262424;
+        color: #E7E9F6;
+        font-weight: 600;
+        box-shadow: inset 3px 3px 0px rgba(0, 0, 0, 0.628);
+      }
+      .ac {
+        grid-area: ac;
+      }
+      .mod {
+        grid-area: mod;
+      }
+      .mult {
+        grid-area: mult;
+      }
+      .div {
+        grid-area: div;
+      }
+      .equal {
+        grid-area: equal;
+      }
+      .dot {
+        grid-area: dot;
+      }
+      .more {
+        grid-area: more;
+      }
+      .less {
+        grid-area: less;
+      }
+      .n9 {
+        grid-area: n9;
+      }
+      .n8 {
+        grid-area: n8;
+      }
+      .n7 {
+        grid-area: n7;
+      }
+      .n6 {
+        grid-area: n6;
+      }
+      .n5 {
+        grid-area: n5;
+      }
+      .n4 {
+        grid-area: n4;
+      }
+      .n3 {
+        grid-area: n3;
+      }
+      .n2 {
+        grid-area: n2;
+      }
+      .n1 {
+        grid-area: n1;
+      }
+      .n0 {
+        grid-area: n0;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="calculadoraGrid">
+      <div class="result">0</div>
+      <button class="ac">AC</button>
+      <button class="mod">%</button>
+      <button class="mult">X</button>
+      <button class="div">/</button>
+      <button class="n7">7</button>
+      <button class="n8">8</button>
+      <button class="n9">9</button>
+      <button class="equal">=</button>
+      <button class="n4">4</button>
+      <button class="n5">5</button>
+      <button class="n6">6</button>
+      <button class="less">-</button>
+      <button class="n1">1</button>
+      <button class="n2">2</button>
+      <button class="n3">3</button>
+      <button class="n0">0</button>
+      <button class="dot">.</button>
+      <button class="more">+</button>
+    </main>
+  </body>
+</html>

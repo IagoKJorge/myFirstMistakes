@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .calculadora{
+      width: clamp(320px, 700px, 900px);
+      height: clamp(400px, 800px, 1000px);
+      background-color: #616DC7;
+      margin: 3rem auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 5%;
+      box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.6);
+    }
+
+    .tela{
+      font-size: clamp(2rem, 2.5vw, 3rem);
+      color: #92A0E0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 15%;
+      width: 90%;
+      background-color: #B7C3EA;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      padding: 1rem;
+      box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .row{
+      height: 15%;
+      display: flex;
+      gap: 0.6rem;
+      padding: 0.6rem 0;
+      width: 90%;
+      padding: 1rem;
+      
+    }
+
+    .btn,.limpar,.igual{
+      font-weight: 600;
+      flex-grow: 1;
+      padding: 1rem;
+      font-size: clamp(1rem, 2vw, 2rem);
+      outline: none;
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .btn:hover{
+      filter: opacity(0.7);
+    }
+
+    .limpar{
+      background-color: #D4A5B1;
+    }
+
+    .igual{
+      flex-grow: 2;
+      border-radius: 1rem;
+    }
+
+  </style>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="calculadora">
+    <p class="tela"><span id="resultado">0</span></p>
+    
+      <div class="row">
+        <button class="limpar" data-value="limpar">C</button>
+        <button class="btn" data-value="%">%</button>
+        <button class="btn" data-value="/">&divide;</button>
+        <button class="btn" data-value="*">X</button>
+      </div>
+      <div class="row">
+        <button class="btn" data-value="7">7</button>
+        <button class="btn" data-value="8">8</button>
+        <button class="btn" data-value="9">9</button>
+        <button class="btn" data-value="-">-</button>
+      </div>
+      <div class="row">
+        <button class="btn" data-value="4">4</button>
+        <button class="btn" data-value="5">5</button>
+        <button class="btn" data-value="6">6</button>
+        <button class="btn" data-value="+">+</button>
+      </div>
+      <div class="row">
+        <button class="btn" data-value="1">1</button>
+        <button class="btn" data-value="2">2</button>
+        <button class="btn" data-value="3">3</button>
+      </div>
+      <div class="row">
+        <button class="btn" data-value="0">0</button>
+        <button class="btn" data-value=".">.</button>
+        <button class="igual" data-value="=">=</button>
+      </div>
+    
+  </main>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --padding-btn: 0.6rem 0.9rem;
+}
+
+body{
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    main{
+      width: clamp(350px, 30vw, 1000px);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .opcoes{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .opcao{
+      font-size: #1b1a1a;
+      padding: var(--padding-btn);
+      border: 2px solid;
+      background-color: transparent;
+      outline: none;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .opcao:hover{
+      color: #fff;
+      background-color: #ccc;
+    }
+
+    .next{
+      width: fit-content;
+      padding: var(--padding-btn);
+      color: #fff;
+      background-color: #007AFE;
+      outline: none;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+        
+    }
+
+    .next:hover{
+          background-color: #007bfec1;
+        }
+
+    .pontos{
+      color: #A9C2FF;
+      font-weight: bolder;
+      font-size: 1.25rem;
+    }
+
+    #acertos{
+      color: rgb(14, 198, 14);
+      font-size: 1.3rem;
+      font-weight: bolder;
+    }
+
+    #erros{
+      color: rgb(131, 33, 33);
+      font-size: 1.3rem;
+      font-weight: bolder;
+    }
+
+    .pergunta{
+      font-size: 1rem;
+    }
+    
+  </style>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Quiz Interativo</h1>
+    <p class="pontos">Acertos: <span id="acertos">0</span></p>
+    <p class="pontos">Erros: <span id="erros">0</span></p>
+    <p class="pergunta"></p>
+      <div class="opcoes">
+      <!--<button id="escolha1" class="opcao"></button> -->
+      <!--<button id="escolha2" class="opcao"></button> -->
+      <!--<button id="escolha3" class="opcao"></button> -->
+      <!--<button id="escolha4" class="opcao"></span> -->
+      </div>
+    <button class="next">Próxima</button>
+  </main>
+</body>
+</html>

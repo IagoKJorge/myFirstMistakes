@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kenoji</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>😍</text></svg>"
+      type="image/svg+xml"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(#fff7cb, #febe30);
+        height: 100vh;
+        width: 100vw;
+        padding: 3.5em;
+      }
+
+      .highlight {
+        color: #b72b32;
+        text-transform: uppercase;
+      }
+
+      .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        
+        
+        
+      }
+
+      .content, .emojis{
+        width: 50%;
+      }
+
+      .emojis{
+        position: relative;
+        margin-bottom: 20%;
+      }
+
+      .emojis img{
+        position: absolute;
+      }
+
+      .heroBanner {
+        font-size: 6em;
+        font-weight: 600;
+        margin-top: 2em;
+      }
+
+      label{
+        margin-top: 3em;
+        font-size: 1.5em;
+        font-weight: 200;
+        display: block;
+      }
+
+      input, button{
+        margin-top: 1.5em;
+        padding: 1em;
+        font-size: 1.25em;
+        border: none;
+        outline: 2px solid #031D45;
+        border-radius: 6px;
+      }
+
+      input{
+        background-color: transparent;
+      }
+      
+      button{
+        background-color: #031D45;
+        color: #f1f1f1;
+        margin-left: 0.67rem;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      button:focus, button:hover{
+        background-color: #031d453c;
+      }
+
+      .estupefato{
+        top: 250px;
+        left: 400px;
+        z-index: 3;
+      }
+      
+      .riso{
+        top: 350px;
+        left: 10px;
+        z-index: 3;
+      }
+
+      .apaixonado{
+        z-index: 2;
+      }
+
+      .happy{
+        top: 200px;
+        left: -70px;
+        z-index: 1;
+      }
+
+      .nojo{
+        right: 350px;
+      }
+
+      .ney{
+        top: -70px;
+        left: 50px;
+        z-index: 3;
+      }
+
+      @keyframes upDown {
+        0%{
+           transform: translate(20px, 20px);
+        }
+        100%{
+           transform: translate(0, 0px);
+        }
+      }
+
+      .upDown{
+        animation: upDown 2s linear 0s infinite ;
+      }
+
+      .apaixonado{
+        animation: upDown 2s linear 0s infinite reverse;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="logo">
+      <img class="logo__img" src="images/logo.svg" alt="Kenoji" />
+    </div>
+
+    <div class="container">
+      <section class="content">
+        <div class="heroBanner">
+          A sua biblioteca de Emojis, <span class="highlight">grátis</span> e
+          para <span class="highlight">sempre</span>
+        </div>
+        <form action="" class="form">
+          <label for="emoji">É só buscar e depois fazer o download. <br>EXPERIMENTE</label>
+          <input type="text" name="emoji" id="emoji" placeholder="Ex.: Smile" />
+          <button type="submit">Buscar</button>
+        </form>
+      </section>
+      <div class="emojis">
+        <img src="images/ney.svg" alt="" srcset="" class="ney upDown">
+        <img src="images/nojo.svg" alt="" srcset="" class="nojo upDown">
+        <img src="images/apaixonado.svg" alt="" srcset="" class="apaixonado">
+        <img src="images/happy.svg" alt="" srcset="" class="happy upDown">
+        <img src="images/riso.svg" alt="" srcset="" class="riso upDown">
+        <img src="images/estupefato.svg" alt="" srcset="" class="estupefato upDown">
+      </div>
+    </div>
+  </body>
+</html>

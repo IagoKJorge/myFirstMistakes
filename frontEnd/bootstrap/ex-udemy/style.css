@@ -1,0 +1,17 @@
+.col{
+  border: 2px solid rgb(73, 12, 114);
+  height: 100px;
+}
+
+.row{
+  border: 2px solid rgb(0, 0, 0);
+  padding: 1rem;
+}
+
+.col:nth-child(odd){
+  background-color: red;
+}
+
+.col:nth-child(even){
+  background-color: yellow;
+}

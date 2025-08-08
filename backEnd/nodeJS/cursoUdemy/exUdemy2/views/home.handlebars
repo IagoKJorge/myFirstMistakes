@@ -1,0 +1,15 @@
+ <h1>Produtos Disponíveis</h1>
+    
+    {{#if produtos.length}}
+        <ul>
+            {{#each produtos}}
+                <li>
+                    <h2>{{this.nome}}</h2>
+                    <p>Preço: R$ {{this.preco}}</p>
+                    <a href="/produto/{{this.id}}">Ver mais...</a>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>Nenhum produto disponível no momento.</p>
+    {{/if}}

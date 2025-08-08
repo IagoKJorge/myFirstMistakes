@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body{
+        background-color: #D3D3D3;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        min-width: 100vw;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      h1{
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .gallery{
+        display: flex;
+        padding: 10px;
+        background-color: #FFFFFF;
+        box-shadow: 5px 10px 6px #00000042;
+        flex-wrap: wrap;
+        width: 80%;
+        gap: 10px;
+      }
+
+      a{
+        display: block;
+        text-decoration: none;
+      }
+
+      div.image{
+        flex: 1 1 20%;
+      }
+
+      img{
+        width: 100%;
+        display: block;
+        position: relative;
+      }
+
+      p{
+        font-size: 1.25rem;
+        background-color: #fff;
+        color: #fff;
+        text-transform: uppercase;
+        padding: 0.3rem;
+        letter-spacing: 2px;
+      }
+
+      a:hover > p{
+        background-color: #1e1918ef;
+        color: #fff;
+        transform: translate(0,-50%) scale(0.9);
+      }
+
+      a:hover > img{
+        transform: scale(0.9);
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Gallery</h1>
+    <section class="gallery">
+      <div class="image">
+        <a href="#">
+          <img src="https://picsum.photos/500/400?random=1" alt="">
+          <p>Descrição da imagem</p>
+        </a>
+      </div>
+      <div class="image">
+        <a href="#">
+          <img src="https://picsum.photos/500/400?random=2" alt="">
+          <p>Descrição da imagem</p>
+        </a>
+      </div>
+      <div class="image">
+        <a href="#">
+          <img src="https://picsum.photos/500/400?random=3" alt="">
+          <p>Descrição da imagem</p>
+        </a>
+      </div>
+      <div class="image">
+        <a href="#">
+          <img src="https://picsum.photos/500/400?random=4" alt="">
+          <p>Descrição da imagem</p>
+        </a>
+      </div>
+      <div class="image">
+        <a href="#">
+          <img src="https://picsum.photos/500/400?random=5" alt="">
+          <p>Descrição da imagem</p>
+        </a>
+      </div>
+      <div class="image">
+        <a href="#">
+          <img src="https://picsum.photos/500/400?random=6" alt="">
+          <p>Descrição da imagem</p>
+        </a>
+      </div>
+      <div class="image">
+        <a href="#">
+          <img src="https://picsum.photos/500/400?random=7" alt="">
+          <p>Descrição da imagem</p>
+        </a>
+      </div>
+      <div class="image">
+        <a href="#">
+          <img src="https://picsum.photos/500/400?random=8" alt="">
+          <p>Descrição da imagem</p>
+        </a>
+      </div>
+    </section>
+  </body>
+</html>

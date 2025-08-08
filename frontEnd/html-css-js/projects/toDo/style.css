@@ -1,0 +1,138 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #303339;
+}
+
+:root {
+  font-family: "Roboto", sans-serif;
+}
+
+.displayNone {
+  display: none;
+}
+
+body {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-image: url(img/body-bg.jpg);
+  background-position: 50% 50%;
+  background-size: cover;
+  display: grid;
+  place-content: center;
+}
+
+button,
+select {
+  transition: all 0.3s ease-in-out;
+}
+
+button:focus,
+button:hover {
+  color: #fdfdfd;
+  background-color: #a8b6d0;
+}
+
+i {
+  color: inherit;
+}
+
+.todoContainer {
+  background-color: #fdfdfd;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  max-height: 80vh;
+  height: max-content;
+  overflow: hidden;
+}
+
+.todoContainer h1 {
+  text-align: center;
+  padding: 0.5rem 0.5rem 1rem;
+  border-bottom: 2px solid #a8b6d0;
+}
+
+.todoForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.todoForm label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.todoForm-group {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  align-content: center;
+}
+
+.addTask,
+.editTask {
+  width: 100%;
+  padding: 0.5rem 0 1.5rem;
+  border-bottom: 2px solid #a8b6d0;
+}
+
+.search {
+  padding: 0.5rem 1rem 0rem 0rem;
+  border-right: 1px solid #a8b6d0;
+}
+
+.status {
+  padding: 0.5rem 0;
+}
+
+input,
+select {
+  padding: 0.5rem 0.75rem;
+  font-size: 1.15rem;
+  border: none;
+  outline: 2px solid #a8b6d0;
+}
+
+input::placeholder,
+select option {
+  color: #a8b6d0;
+  font-weight: lighter;
+}
+
+.btn {
+  padding: 0.5rem 0.75rem;
+  border: none;
+  outline: 2px solid #a8b6d0;
+  font-size: 1.15rem;
+}
+
+input + .btn,
+.btn + .btn {
+  margin-left: 0.4rem;
+}
+
+.tasks {
+  list-style: none;
+  width: 100%;
+}
+
+.task {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 2px solid #a8b6d0;
+}
+
+.task .taskText {
+  flex-grow: 1;
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-style: italic;
+}
