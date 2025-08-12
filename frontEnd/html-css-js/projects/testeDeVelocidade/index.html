@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teste de Velocidade de Digitação</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      font-size: 20px;
+    }
+
+    body.dark {
+      --body-bg: #333333;
+      --label-bg: #f3f3f3;
+      --label-text: #595146;
+      --text-color: #fff;
+    }
+
+    body.light {
+      --body-bg: #fff;
+      --label-bg: #f3f3f3;
+      --label-text: #6c6574;
+      --text-color: #000;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+      background-color: var(--body-bg);
+    }
+
+    .theme {
+      position: absolute;
+      top: 0.3rem;
+      right: 0.3rem;
+    }
+
+    main {
+      width: clamp(20rem, 50vw, 1140px);
+      margin: 3rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+      color: var(--text-color);
+    }
+
+    main * {
+      width: 100%;
+    }
+
+    main h1 {
+      text-align: center;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    form * {
+      padding: 1rem;
+      font-size: 1.1rem;
+    }
+
+    label {
+      background-color: var(--label-bg);
+      color: var(--label-text);
+      text-align: center;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    button {
+      width: fit-content;
+      text-align: center;
+      padding: 0.6rem 1rem;
+      background-color: #007afe;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      letter-spacing: 0.4px;
+      border-radius: 6px;
+      transition: all 0.3s ease-in-out;
+      font-size: 0.9rem;
+    }
+
+    button:hover {
+      filter: brightness(80%);
+    }
+
+    #segundos,
+    #resultados {
+      text-align: center;
+    }
+
+    #resultados p {
+      margin-bottom: 0.3rem;
+    }
+  </style>
+  <body class="light">
+    <main>
+      <h1>Teste de Velocidade de Digitação</h1>
+      <p>
+        Para começar o teste, clique na caixa de texto abaixo e comece a digitar
+        o texto exibido acima dela. O cronômetro começará automaticamente assim
+        que você começar a digitar. Quando você terminar de digitar o texto
+        corretamente, o tempo que você levou será exibido.
+      </p>
+      <form action="">
+        <label for="texto">Digite isso</label>
+        <textarea
+          name="texto"
+          id="texto"
+          placeholder="Digite o texto aqui..."
+          rows="3"
+        ></textarea>
+        <button type="reset">Reniciar</button>
+      </form>
+      <span id="segundos"></span>
+      <div id="resultados"></div>
+    </main>
+
+    <button class="theme">Alterar tema</button>
+    <script>
+      const frases = [
+        "O céu estava limpo e estrelado.",
+        "Hoje é um bom dia para aprender algo novo.",
+        "O cachorro correu atrás da bola.",
+        "A vida é feita de escolhas e consequências.",
+        "Você já bebeu água hoje?",
+        "Programar é transformar ideias em realidade.",
+        "Nunca é tarde para recomeçar.",
+        "Respire fundo e continue tentando.",
+        "Ela abriu a janela e viu o pôr do sol.",
+        "Aprender a digitar rápido leva tempo e prática.",
+        "A paciência é uma virtude esquecida.",
+        "Tudo está mudando rapidamente.",
+        "Digitando palavras você treina seu cérebro.",
+        "O vento soprava forte naquela manhã.",
+        "Os erros fazem parte do processo.",
+        "Desafie-se todos os dias.",
+        "Quanto mais você pratica, melhor você fica.",
+        "Ele esqueceu o guarda-chuva em casa.",
+        "Aquela foi uma decisão difícil.",
+        "Você está indo muito bem!",
+        "O teclado é a ponte entre você e o computador.",
+        "Ela ama ler livros de aventura.",
+        "Não tenha medo de errar.",
+        "A persistência é o caminho do êxito.",
+        "Estudar um pouco por dia já faz diferença.",
+        "O relógio marcava exatamente meia-noite.",
+        "Você lembra da sua primeira senha?",
+        "Cada tecla pressionada é um passo à frente.",
+        "Os pássaros cantavam lá fora.",
+        "A chuva começou de repente.",
+        "Ele digitou rapidamente e com precisão.",
+        "Um passo de cada vez.",
+        "Aprender é um processo contínuo.",
+        "Ela colocou café para esquentar.",
+        "Você está mais rápido do que imagina.",
+        "Qual foi a sua maior conquista?",
+        "Digite como se estivesse dançando.",
+        "Confiança se constrói com prática.",
+        "A jornada é mais importante que o destino.",
+        "A prática leva à perfeição.",
+        "Onde você quer estar daqui a um ano?",
+        "Palavras têm poder.",
+        "A tecnologia pode ser sua aliada.",
+        "Você já experimentou digitar com os olhos fechados?",
+        "Nunca subestime o poder de um bom teclado.",
+        "Os gatos dormem quase o dia todo.",
+        "Não esqueça de alongar os dedos.",
+        "Essa frase é só para te confundir, talvez não.",
+        "Ela digitou com tanta raiva que quebrou a tecla.",
+        "Códigos e palavras caminham juntos.",
+        "A rotina molda quem você é.",
+        "Tudo parece impossível até que seja feito.",
+        "Um bom dia começa com boas decisões.",
+        "Vamos testar sua velocidade agora!",
+        "Evite olhar para o teclado.",
+        "Você consegue digitar isso sem errar?",
+        "A música ajuda na concentração.",
+        "Coma frutas e digite mais rápido.",
+        "Faça pausas regulares para descansar.",
+        "Seja gentil com você mesmo.",
+        "Não é uma corrida, é uma maratona.",
+        "Você pode melhorar a cada minuto.",
+        "Tente digitar isso perfeitamente.",
+        "Errou? Recomece com calma.",
+        "Aprender é divertido se você permitir.",
+        "Digite como se fosse um piano.",
+        "Cada frase é um novo desafio.",
+        "Parabéns por chegar até aqui.",
+        "Essa é a frase número sessenta e sete.",
+        "O mouse é invejoso do teclado.",
+        "Crie o hábito e colha os frutos.",
+        "A tela reflete sua dedicação.",
+        "Mais importante que a velocidade é a precisão.",
+        "A digitação é como um jogo mental.",
+        "Você está se tornando mais ágil.",
+        "Domine o teclado e dominará o mundo digital.",
+        "A motivação nasce da ação.",
+        "Quantas palavras por minuto você consegue?",
+        "Tente não olhar para a tela por um segundo.",
+        "Os dedos sabem o caminho, confie neles.",
+        "Hoje você é melhor do que ontem.",
+        "Nada substitui a prática diária.",
+        "O teclado mecânico faz toda a diferença.",
+        "Seu cérebro adora desafios.",
+        "Preste atenção nos detalhes.",
+        "Digitar rápido é como dançar com os dedos.",
+        "Você está quase no final!",
+        "Continue focado e calmo.",
+        "A melhor forma de aprender é errando.",
+        "Controle o ritmo e mantenha a calma.",
+        "A mente aprende com repetição.",
+        "Use todos os dedos sempre que possível.",
+        "Você já dominou metade do caminho.",
+        "Imagine que está escrevendo um livro.",
+        "Respire, foque e digite.",
+        "A frase mais difícil vem agora... ou não.",
+        "Seja o seu próprio competidor.",
+        "A meta é melhorar 1% por dia.",
+        "O importante é não desistir.",
+        "Mãos à obra, dedos no teclado!",
+        "Você é mais rápido do que pensa.",
+        "Finalizando com maestria!",
+        "Fim do desafio. Hora de recomeçar!",
+      ];
+
+      const textArea = document.querySelector("textarea");
+      const label = document.querySelector("label");
+      const segundosSpan = document.querySelector("span");
+      const resultados = document.querySelector("#resultados");
+      const reset = document.querySelector("button[type='reset']");
+      const theme = document.querySelector(".theme");
+
+      let frase = frases[Math.floor(frases.length * Math.random())];
+      label.textContent = frase;
+
+
+      theme.addEventListener("click", function(){
+        let body = document.querySelector("body");
+        if(body.classList.contains("light")){
+          body.classList.remove("light");
+          body.classList.add("dark");
+        }else{
+          body.classList.remove("dark");
+          body.classList.add("light");
+        }
+      })
+
+      let inicio = 0;
+      textArea.focus();
+
+      reset.addEventListener("click", (ev) => {
+        ev.preventDefault();
+        frase = frases[Math.floor(frases.length * Math.random())];
+        label.textContent = frase;
+        inicio = 0;
+        segundosSpan.textContent = "";
+        textArea.value = "";
+        resultados.innerHTML = "";
+        textArea.focus();
+      });
+
+      textArea.addEventListener("paste", (ev) => {
+        ev.preventDefault();
+        alert("Colar não é permitido neste campo.");
+      });
+
+      textArea.addEventListener("input", function (ev) {
+        if (!inicio) inicio = new Date();
+
+        if (textArea.value === label.textContent) {
+          const fim = new Date();
+          const segundos = Math.floor((fim - inicio) / 1000);
+          segundosSpan.textContent = `Parábens! Demorou ${segundos} segundos!`;
+          let p = document.createElement("p")
+          p.textContent = `Texto: "${frase} - Tempo: ${segundos} segundos"`;
+          resultados.append(p);
+          frase = frases[Math.floor(frases.length * Math.random())];
+          inicio = 0
+          label.textContent = frase;
+          textArea.value = "";
+          textArea.focus();
+        }
+      });
+    </script>
+  </body>
+</html>

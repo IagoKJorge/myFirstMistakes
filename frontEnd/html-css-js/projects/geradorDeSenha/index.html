@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador de senha</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+
+      body {
+        min-width: 100vw;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(90deg, #522fc6, #6747cf, #7d65cd);
+      }
+
+      .container {
+        display: flex;
+        width: 80%;
+        height: 96vh;
+        background-color: #fdfdfd;
+        box-shadow: 2px 2px 6px #0000007b;
+      }
+
+      .img {
+        background-image: url(img/pessoas.jpg);
+        height: 100%;
+        width: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .img h2 {
+        color: #fff;
+        font-size: 5em;
+        z-index: 1;
+      }
+
+      .img::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #4015cd8a;
+      }
+
+      .form {
+        padding: 1rem;
+        width: 50%;
+      }
+
+      .form h1 {
+        text-align: center;
+      }
+
+      .form .subtitle {
+        text-align: center;
+        color: #ccc;
+        margin-bottom: 1rem;
+      }
+
+      .form form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      form label {
+        font-weight: bold;
+        font-size: 1rem;
+        padding: 0rem 0.75rem;
+        margin-top: 0.5rem;
+      }
+
+      form input {
+        border: none;
+        padding: 0.5rem 0.75rem;
+        border-bottom: 1px solid #00000067;
+        font-size: 1rem;
+        outline: none;
+      }
+
+      input:focus {
+        border-bottom: 2px solid #00000067;
+      }
+
+      form .subtitle {
+        font-size: 1rem;
+        align-self: center;
+      }
+
+      .geradorDeSenha {
+        font-size: 1rem;
+        color: #000;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .geradorDeSenha:hover {
+        color: #3613aa;
+      }
+
+      .senhaGerada {
+        display: grid;
+        place-content: center;
+        row-gap: 0.6rem;
+        padding: 1rem 0;
+        border: 3px solid #f4e4ff;
+      }
+
+      .newForm {
+        border: 3px solid #f4e4ff;
+        padding: 1rem 0.6rem;
+      }
+
+      .senhaGerada_title {
+        color: #449111;
+      }
+
+      .senhaGerada_text {
+        font-size: 1.7rem;
+        font-weight: bold;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .btnSubmit {
+        width: 20%;
+        padding: 1rem 2rem;
+        background-color: #9bdc69;
+        outline: none;
+        border: none;
+        font-size: 1rem;
+        color: #fff;
+        font-weight: 500;
+        letter-spacing: 1px;
+        border-radius: 0.8rem;
+        align-self: flex-end;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .btnSubmit:hover {
+        filter: brightness(80%);
+      }
+
+      
+
+      .newForm div {
+        display: flex;
+        margin-bottom: 1rem;
+      }
+
+      .newForm div label {
+        flex-grow: 1;
+      }
+
+      #qtd {
+        width: 10%;
+        background-color: #fdfdfd;
+      }
+
+      .newBtn {
+        font-size: 1rem;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        border: none;
+        display: block;
+        justify-self: center;
+        align-self: center;
+        color: #fff;
+        background-color: #32acff;
+        transition: all 0.3s;
+      }
+
+      .newBtn:hover {
+        background-color: #32adffbc;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <div class="img">
+        <h2>
+          Seja <br />
+          bem-vindo
+        </h2>
+      </div>
+      <div class="form">
+        <h1>Crie sua conta:</h1>
+        <h3 class="subtitle">
+          Registre-se para utilizar todas as funcionalidades do sistema
+        </h3>
+        <form action="#">
+          <label for="nome">Nome</label>
+          <input
+            type="text"
+            name="nome"
+            id="nome"
+            placeholder="Digite seu nome"
+            autocomplete="off"
+          />
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Digite seu e-mail"
+            autocomplete="off"
+          />
+          <label for="senha">Senha</label>
+          <input
+            type="password"
+            name="senha"
+            id="senha"
+            placeholder="********"
+            autocomplete="off"
+          />
+          <p class="subtitle">
+            Quer ajuda para criar uma senha segura?
+            <span class="geradorDeSenha">Clique aqui.</span>
+          </p>
+          <div class="newForm hide">
+            <p class="subtitle">Selecione as opções que deseja:</p>
+            <div>
+              <label for="qtd">Quantidade de caracteres:</label>
+              <input
+                type="number"
+                name="qtd"
+                id="qtd"
+                min="6"
+                max="24"
+                value="6"
+              />
+            </div>
+            <div>
+              <label for="letras">Letras</label
+              ><input
+                type="checkbox"
+                name="letras"
+                id="letras"
+                value="letras"
+              />
+            </div>
+            <div>
+              <label for="numeros">Números</label
+              ><input
+                type="checkbox"
+                name="numeros"
+                id="numeros"
+                value="numeros"
+              />
+            </div>
+            <div>
+              <label for="letras">Símbolos</label
+              ><input
+                type="checkbox"
+                name="simbolos"
+                id="simbolos"
+                value="simbolos"
+              />
+            </div>
+            <button class="newBtn">Criar senha</button>
+          </div>
+          <div class="senhaGerada hide">
+            <h3 class="senhaGerada_title">Aqui está a sua senha:</h3>
+            <p class="senhaGerada_text">dffsfsfsf</p>
+          </div>
+          <label for="senha2">Confirme sua senha</label>
+          <input
+            type="password"
+            name="senha2"
+            id="senha2"
+            placeholder="Confirme a sua senha"
+            autocomplete="off"
+          />
+          <button type="submit" class="btnSubmit">Cadastrar</button>
+        </form>
+      </div>
+    </main>
+    <script>
+      const geradorDeSenha = document.querySelector(".geradorDeSenha");
+      const divSenhaGerada = document.querySelector(".senhaGerada");
+      const newForm = document.querySelector(".newForm");
+      const newBtn = document.querySelector(".newBtn");
+      const qtd = document.querySelector("#qtd");
+
+      geradorDeSenha.addEventListener("click", function () {
+        newForm.classList.remove("hide");
+      });
+
+      newBtn.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        let senha = gerarSenhaComCharCode(qtd.value);
+        if (senha.length === 0) return;
+        divSenhaGerada.classList.remove("hide");
+        divSenhaGerada.querySelector("p").textContent = senha;
+      });
+
+      function gerarSenhaComCharCode(tamanho = 6) {
+        let senha = [];
+        let tipos = [
+          ...document.querySelectorAll('input[type="checkbox"]:checked'),
+        ];
+
+        if (tamanho.length < 6 && tamanho.length > 24)
+          return alert("Tamanho inválido!");
+        if (tipos.length === 0)
+          return alert("Preencha ao menos uma das opções!");
+        console.log("1", senha);
+        tipos = tipos.map((el) => el.value);
+        //console.log(tamanho);
+        //console.log(tipos);
+
+        if (tipos.includes("letras")) senha.push(gerarMaiuscula());
+        if (tipos.includes("letras")) senha.push(gerarMinuscula());
+        if (tipos.includes("numeros")) senha.push(gerarNumero());
+        if (tipos.includes("simbolos")) senha.push(gerarEspecial());
+        console.log("2", senha);
+        for (let i = senha.length; i < tamanho; i++) {
+          let tipo = tipos[Math.floor(Math.random() * tipos.length)];
+
+          switch (tipo) {
+            case "letras":
+              senha.push(gerarMaiuscula());
+              break;
+            case "letras":
+              senha.push(gerarMinuscula());
+              break;
+            case "numeros":
+              senha.push(gerarNumero());
+              break;
+            case "simbolos":
+              senha.push(gerarEspecial());
+              break;
+          }
+        }
+        console.log("3", senha);
+        return senha.sort(() => Math.random() - 0.5).join("");
+      }
+
+      function gerarMaiuscula() {
+        // A-Z (65-90)
+        return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+      }
+
+      function gerarMinuscula() {
+        // a-z (97-122)
+        return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+      }
+
+      function gerarNumero() {
+        // 0-9 (48-57)
+        return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+      }
+
+      function gerarEspecial() {
+        // Intervalos de caracteres especiais comuns
+        const intervalos = [
+          [33, 47], // !"#$%&'()*+,-./
+          [58, 64], // :;<=>?@
+          [91, 96], // [\]^_`
+          [123, 126], // {|}~
+        ];
+
+        // Escolhe um intervalo aleatório
+        const intervalo =
+          intervalos[Math.floor(Math.random() * intervalos.length)];
+        const [min, max] = intervalo;
+
+        // Gera um caractere aleatório dentro do intervalo escolhido
+        return String.fromCharCode(
+          Math.floor(Math.random() * (max - min + 1)) + min
+        );
+      }
+    </script>
+  </body>
+</html>
